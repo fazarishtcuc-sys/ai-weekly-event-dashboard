@@ -26,37 +26,6 @@ if "dashboard_fullscreen" not in st.session_state:
 # ---------------------------------------------------------
 # DESIGN SYSTEM — MODERN CORPORATE DASHBOARD
 # ---------------------------------------------------------
-import streamlit as st
-import pandas as pd
-
-st.set_page_config(layout="wide")
-
-# --- 1. PINDAHKAN FILTER KE SIDEBAR ---
-st.sidebar.header("Filter Dashboard")
-
-# Gunakan st.sidebar.multiselect agar masuk ke bilah kiri
-tcu_filter = st.sidebar.multiselect("TCU Area / Provider", options=["TCU Area 1 Jakarta", "TCU Area 2 Bandung"])
-school_filter = st.sidebar.multiselect("School", options=["SOECT", "SOGTM"])
-status_filter = st.sidebar.multiselect("Status Event", options=["Ongoing", "Completed"])
-
-# --- 2. HALAMAN UTAMA (OTOMATIS NAIK KE ATAS) ---
-st.markdown("# Weekly Event Dashboard")
-st.write("Event monitoring, Training Support assignment, and venue management")
-
-# Bagian Kartu Metrik
-metric_col1, metric_col2, metric_col3, metric_col4 = st.columns(4)
-with metric_col1:
-    st.metric("TOTAL EVENT", "7")
-with metric_col2:
-    st.metric("EVENT BERJALAN", "7")
-with metric_col3:
-    st.metric("TOTAL TS BERTUGAS", "7")
-with metric_col4:
-    st.metric("KOTA & RUANGAN TERSIMPAN", "3/7")
-
-# Bagian Tabel Event Schedule
-st.markdown("### 📋 Event Schedule")
-# st.dataframe(df) # Masukkan dataframe Anda di sini
 fullscreen_css = ""
 
 if st.session_state["dashboard_fullscreen"]:
