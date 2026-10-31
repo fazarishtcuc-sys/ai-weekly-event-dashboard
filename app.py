@@ -7,7 +7,11 @@ from modules.engine import (
     save_choice, list_cities, list_rooms, add_room, add_city
 )
 from modules.exporter import export_workbook
-
+st.set_page_config(
+    page_title="Weekly Event Dashboard",
+    layout="wide",  # Mengubah layout menjadi melebar
+    initial_sidebar_state="expanded",
+)
 st.set_page_config(page_title="Weekly Event Dashboard", page_icon="📅", layout="wide")
 DB = Path("data/event_choices.db")
 DB.parent.mkdir(exist_ok=True)
