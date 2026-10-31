@@ -56,7 +56,7 @@ if st.session_state["dashboard_fullscreen"]:
     }
 
     .kpi-label {
-        font-size: 9px !important;
+        font-size: 12px !important;
         line-height: 1.2 !important;
     }
 
