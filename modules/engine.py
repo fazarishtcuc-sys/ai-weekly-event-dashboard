@@ -49,7 +49,7 @@ def init_db(path):
 
 def fingerprint(row):
     # Stable fingerprint for unchanged event details; Event ID is deliberately excluded.
-    bits=[norm(row.get("Event Name")),norm(row.get("School")),norm(row.get("Vendor")),
+    bits=[norm(row.get("Event Name")),norm(row.get("School")),
           dt(row.get("Event Date Start")),dt(row.get("Event Date End"))]
     return hashlib.sha256("|".join(bits).encode()).hexdigest()
 
@@ -59,10 +59,10 @@ def find_saved_choice(db,row):
     with sqlite3.connect(db) as con:
         exact=con.execute("SELECT city,room FROM choices WHERE fingerprint=?",(fp,)).fetchone()
         if exact: return {"status":"matched","city":exact[0],"room":exact[1]}
-        # If date changed, try a unique match using event name + school + vendor.
+        # If date changed, try a unique match using event name + school.
         candidates=con.execute("""SELECT city,room FROM choices
           WHERE event_name=? AND school=? AND vendor=?""",
-          (norm(row.get("Event Name")),norm(row.get("School")),norm(row.get("Vendor")))).fetchall()
+          (norm(row.get("Event Name")),norm(row.get("School")))).fetchall()
     if len(candidates)==1:
         return {"status":"matched","city":candidates[0][0],"room":candidates[0][1]}
     if len(candidates)>1:
@@ -75,7 +75,7 @@ def save_choice(db,row,city,room):
         con.execute("""INSERT INTO choices(fingerprint,event_name,school,vendor,provider,start_date,end_date,city,room)
         VALUES(?,?,?,?,?,?,?,?,?) ON CONFLICT(fingerprint) DO UPDATE SET
         city=excluded.city,room=excluded.room,updated_at=CURRENT_TIMESTAMP""",
-        (fingerprint(row),norm(row.get("Event Name")),norm(row.get("School")),norm(row.get("Vendor")),
+        (fingerprint(row),norm(row.get("Event Name")),norm(row.get("School")),
          str(row.get("Provider","")),dt(row.get("Event Date Start")),dt(row.get("Event Date End")),city,room))
         con.commit()
 
