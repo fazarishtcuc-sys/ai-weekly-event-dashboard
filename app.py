@@ -69,7 +69,7 @@ if st.session_state["dashboard_fullscreen"]:
     /* Event Schedule */
     .section-title {
         font-size: 15px !important;
-        margin-top: 30px !important;
+        margin-top: 50px !important;
         margin-bottom: 10px !important;
     }
 
