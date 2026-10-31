@@ -41,36 +41,6 @@ if st.session_state["dashboard_fullscreen"]:
         max-width: 100% !important;
     }
 
-    /* Header dashboard */
-    .dashboard-header {
-        padding: 9px 16px !important;
-        margin-bottom: 5px !important;
-        border-radius: 11px !important;
-    }
-
-    .dashboard-header h1 {
-        font-size: 20px !important;
-        line-height: 1.2 !important;
-    }
-
-    .dashboard-header p {
-        font-size: 10px !important;
-        margin-top: 2px !important;
-    }
-
-    /* Filter */
-    [data-testid="stWidgetLabel"] {
-        margin-bottom: 1px !important;
-    }
-
-    [data-testid="stWidgetLabel"] label {
-        font-size: 10px !important;
-    }
-
-    [data-testid="stMultiSelect"] [data-baseweb="select"] > div {
-        min-height: 15px !important;
-    }
-
     /* Tombol fullscreen */
     .stButton > button {
         min-height: 32px !important;
