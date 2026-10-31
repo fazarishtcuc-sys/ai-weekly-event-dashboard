@@ -219,19 +219,59 @@ for idx,row in shown.iterrows():
         "event_name": event_name,
     }
 
-# Global save: persist all selected City/Room values together.
-st.divider()
-st.markdown('<div class="section">💾 Simpan Perubahan</div>', unsafe_allow_html=True)
-pending = st.session_state.get("pending_choices", {})
-if st.button("💾 Simpan Semua Perubahan", type="primary", use_container_width=False):
-    invalid = [
-        item["event_name"] for item in pending.values()
-        if not item["city"] or not item["room"]
-    ]
-    if invalid:
-        st.error(
-            f"Masih ada {len(invalid)} event yang belum memiliki Kota dan Ruangan. "
-            "Lengkapi pilihan langsung pada baris event di atas sebelum menyimpan."
+# ---------------------------------------------------------
+# SIMPAN SEMUA PERUBAHAN
+# Lokasi dan Ruangan boleh kosong
+# ---------------------------------------------------------
+
+if st.button("💾 Simpan Semua Perubahan", type="primary", use_container_width=True):
+
+    saved_count = 0
+    error_count = 0
+
+    for event_key, values in st.session_state.get("pending_choices", {}).items():
+
+        # Ambil data event yang terkait dengan pilihan ini
+        row = values.get("row")
+
+        if row is None:
+            continue
+
+        # Lokasi dan Ruangan boleh kosong
+        city = str(values.get("city", "") or "").strip()
+        room = str(values.get("room", "") or "").strip()
+
+        # Nilai 0 dianggap kosong
+        if city in ["0", "0.0"]:
+            city = ""
+
+        if room in ["0", "0.0"]:
+            room = ""
+
+        try:
+            save_choice(
+                DB_PATH,
+                row,
+                city,
+                room
+            )
+            saved_count += 1
+
+        except Exception as e:
+            error_count += 1
+            st.error(
+                f"Gagal menyimpan event {row.get('Event Name', '')}: {e}"
+            )
+
+    if error_count == 0:
+        st.success(
+            f"Berhasil menyimpan {saved_count} event. "
+            "Lokasi dan Ruangan boleh tetap kosong."
+        )
+    else:
+        st.warning(
+            f"Tersimpan: {saved_count} event. "
+            f"Gagal: {error_count} event."
         )
     else:
         saved_count = 0
