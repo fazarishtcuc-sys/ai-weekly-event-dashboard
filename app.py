@@ -11,7 +11,7 @@ from modules.exporter import export_workbook
 st.set_page_config(page_title="Weekly Event Dashboard", page_icon="📅", layout="wide")
 DB = Path("data/event_choices.db")
 DB.parent.mkdir(exist_ok=True)
-
+init_db(DB)
 # ---------------------------------------------------------
 # MODE FULL SCREEN DASHBOARD
 # ---------------------------------------------------------
@@ -36,9 +36,6 @@ if st.session_state["dashboard_fullscreen"]:
         }
     </style>
     """, unsafe_allow_html=True)
-
-init_db(DB)
-
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
