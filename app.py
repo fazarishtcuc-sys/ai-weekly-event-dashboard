@@ -88,7 +88,7 @@ if file is not None:
 
 if "events" not in st.session_state:
     st.info("Upload file Excel melalui panel kiri untuk mulai melihat dashboard.")
-    st.markdown("**File yang Anda berikan sudah dikenali:** kolom `Event Name`, `Event Date Start`, `Event Date End`, `Provider`, `Vendor`, `Training Support`, `School`, dan `Event Status`.")
+    st.markdown("**File yang Anda berikan sudah dikenali:** kolom `Event Name`, `Event Date Start`, `Event Date End`, `Provider`, `Training Support`, `School`, dan `Event Status`.")
     st.stop()
 
 df = st.session_state["events"]
