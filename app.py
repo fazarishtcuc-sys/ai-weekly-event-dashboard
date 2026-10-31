@@ -145,7 +145,7 @@ html, body, [class*="css"] {{
 .dashboard-header h1 {{
     color: #FFFFFF;
     font-family: 'Manrope', sans-serif;
-    font-size: 27px;
+    font-size: 50px;
     font-weight: 800;
     line-height: 1.2;
     margin: 0;
