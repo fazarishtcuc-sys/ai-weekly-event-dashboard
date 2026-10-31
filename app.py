@@ -126,10 +126,71 @@ matches={}
 for idx,row in shown.iterrows():
     matches[idx]=find_saved_choice(DB,row)
 
-total=len(shown)
-ongoing=shown["Event Status"].astype(str).str.lower().str.contains("ongoing|in progress",regex=True).sum()
-assigned=sum(1 for m in matches.values() if m.get("city") and m.get("room"))
-k1,k2,k3=st.columns(3)
+
+# ---------------------------------------------------------
+# KPI DASHBOARD
+# ---------------------------------------------------------
+
+# Total event dalam periode dan filter aktif
+total = len(shown)
+
+# Total event yang sedang berjalan
+ongoing = shown["Event Status"].astype(str).str.lower().str.contains(
+    r"ongoing|in progress",
+    regex=True,
+    na=False
+).sum()
+
+# Total Training Support unik yang bertugas
+# Mendukung beberapa nama TS dalam satu sel,
+# dipisahkan koma, titik koma, atau baris baru.
+ts_values = (
+    shown["Training Support"]
+    .fillna("")
+    .astype(str)
+    .str.split(r"[,;\n]+", regex=True)
+    .explode()
+    .str.strip()
+)
+
+# Buang nilai kosong dan angka 0
+ts_values = ts_values[
+    (ts_values != "") &
+    (~ts_values.str.lower().isin(["0", "0.0", "nan", "none"]))
+]
+
+# Hitung orang unik tanpa membedakan huruf besar/kecil
+total_ts = ts_values.str.casefold().nunique()
+
+# Event yang Kota dan Ruangannya sudah tersimpan
+assigned = sum(
+    1 for m in matches.values()
+    if m.get("city") and m.get("room")
+)
+
+# Tampilkan 4 kartu KPI
+k1, k2, k3, k4 = st.columns(4)
+
+kpis = [
+    (k1, "TOTAL EVENT", total, "#173E67"),
+    (k2, "EVENT BERJALAN", int(ongoing), "#287348"),
+    (k3, "TOTAL TS BERTUGAS", total_ts, "#6745A0"),
+    (k4, "KOTA & RUANGAN TERSIMPAN", f"{assigned}/{total}", "#9A641F"),
+]
+
+for col, label, value, color in kpis:
+    col.markdown(
+        f"""
+        <div class="kpi">
+            <div class="kpi-label">{label}</div>
+            <div class="kpi-value" style="color:{color}">
+                {value}
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
 for col,label,value in [(k1,"TOTAL EVENT",total),(k2,"ONGOING",int(ongoing)),(k3,"KOTA & RUANGAN TERSIMPAN",f"{assigned}/{total}")]:
     col.markdown(f'<div class="kpi"><div class="kpi-label">{label}</div><div class="kpi-value">{value}</div></div>',unsafe_allow_html=True)
 
