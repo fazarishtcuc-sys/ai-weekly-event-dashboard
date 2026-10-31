@@ -18,7 +18,11 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
 html, body, [class*="css"] {font-family:'DM Sans',sans-serif}
 .stApp{background:#f3f6fb}
-.block-container{padding-top:1.35rem;max-width:1600px}
+.block-container{
+    padding-top:1rem;
+    padding-bottom:2rem;
+    max-width:100%;
+}
 .hero{background:linear-gradient(115deg,#102b4e,#1d5286 68%,#2878b4);padding:26px 30px;border-radius:18px;color:#fff;margin-bottom:18px}
 .hero h1{font-family:Manrope,sans-serif;color:#fff;font-size:27px;margin:0}
 .hero p{color:#d9e9f7;margin:5px 0 0;font-size:14px}
