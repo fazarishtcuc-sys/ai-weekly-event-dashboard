@@ -377,7 +377,7 @@ else:
     if st.button("⛶ Mode Full Screen Dashboard"):
         st.session_state["dashboard_fullscreen"] = True
         st.rerun()
-
+if shown.empty:
 
 # ---------------------------------------------------------
 # KPI DASHBOARD
