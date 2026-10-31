@@ -120,32 +120,139 @@ if st.session_state["dashboard_fullscreen"]:
     </style>
     """, unsafe_allow_html=True)
 
+
+# CSS UTAMA
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
-html, body, [class*="css"] {font-family:'DM Sans',sans-serif}
-.stApp{background:#f3f6fb}
-.block-container{
-    padding-top:1rem;
-    padding-bottom:2rem;
-    max-width:100%;
+
+html, body, [class*="css"] {
+    font-family: 'DM Sans', sans-serif;
 }
-.hero{background:linear-gradient(115deg,#102b4e,#1d5286 68%,#2878b4);padding:26px 30px;border-radius:18px;color:#fff;margin-bottom:18px}
-.hero h1{font-family:Manrope,sans-serif;color:#fff;font-size:27px;margin:0}
-.hero p{color:#d9e9f7;margin:5px 0 0;font-size:14px}
-.kpi{background:#fff;border:1px solid #e4eaf2;border-radius:15px;padding:17px 19px;min-height:96px;box-shadow:0 3px 12px #15395d0a}
-.kpi-label{color:#738196;font-size:11px;font-weight:700;letter-spacing:.6px}
-.kpi-value{font-family:Manrope,sans-serif;color:#173e67;font-size:29px;font-weight:800;margin-top:5px}
-.section{font-family:Manrope,sans-serif;color:#173e67;font-size:19px;font-weight:800;margin:18px 0 8px}
-div[data-testid="stExpander"]{background:white;border:1px solid #e5ebf3;border-radius:12px}
-.stButton>button,.stDownloadButton>button{border-radius:10px;font-weight:700}
-div[data-testid="stSidebar"]{background:#edf2f8}
+
+.stApp {
+    background: #f3f6fb;
+}
+
+.block-container {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    max-width: 100%;
+}
+
+.hero {
+    background: linear-gradient(115deg,#102b4e,#1d5286 68%,#2878b4);
+    padding: 26px 30px;
+    border-radius: 18px;
+    color: white;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    color: white;
+    font-size: 27px;
+    margin: 0;
+}
+
+.hero p {
+    color: #d9e9f7;
+    margin: 5px 0 0;
+    font-size: 14px;
+}
+
+.kpi {
+    background: white;
+    border: 1px solid #e4eaf2;
+    border-radius: 15px;
+    padding: 17px 19px;
+    min-height: 96px;
+}
+
+.kpi-label {
+    color: #738196;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.kpi-value {
+    color: #173e67;
+    font-size: 29px;
+    font-weight: 800;
+}
+
+.section {
+    color: #173e67;
+    font-size: 19px;
+    font-weight: 800;
+    margin: 18px 0 8px;
+}
+
+.stButton>button,
+.stDownloadButton>button {
+    border-radius: 10px;
+    font-weight: 700;
+}
+
 </style>
-<div class="hero">
-<h1>📅 WEEKLY EVENT DASHBOARD</h1>
-<p>Training Event Schedule · Monitoring jadwal, TCU Area, Kota, dan Ruangan</p>
-</div>
 """, unsafe_allow_html=True)
+
+
+# PRESENTATION MODE
+if st.session_state["dashboard_fullscreen"]:
+
+    st.markdown("""
+    <style>
+
+    .block-container {
+        padding-top: 0.1rem !important;
+        padding-bottom: 0.2rem !important;
+        padding-left: 0.8rem !important;
+        padding-right: 0.8rem !important;
+    }
+
+    .hero {
+        padding: 5px 15px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .hero h1 {
+        font-size: 15px !important;
+    }
+
+    .hero p {
+        font-size: 9px !important;
+        margin: 0 !important;
+    }
+
+    [data-testid="stAlert"] {
+        display: none !important;
+    }
+
+    .kpi {
+        min-height: 43px !important;
+        padding: 4px 9px !important;
+    }
+
+    .kpi-label {
+        font-size: 8px !important;
+    }
+
+    .kpi-value {
+        font-size: 17px !important;
+        margin-top: 0 !important;
+    }
+
+    .section {
+        font-size: 13px !important;
+        margin: 3px 0 2px !important;
+    }
+
+    div[data-testid="stVerticalBlock"] {
+        gap: 0.2rem !important;
+    }
+
+    </style>
+    """, unsafe_allow_html=True)
 
 with st.sidebar:
     st.markdown("## 📂 Upload Data")
