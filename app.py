@@ -50,7 +50,7 @@ if st.session_state["dashboard_fullscreen"]:
 
     /* KPI cards */
     .kpi {
-        min-height: 10px !important;
+        min-height: 20px !important;
         padding: 8px 12px !important;
         border-radius: 10px !important;
     }
