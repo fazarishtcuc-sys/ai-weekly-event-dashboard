@@ -74,7 +74,7 @@ if st.session_state["dashboard_fullscreen"]:
     }
 
     [data-testid="stCaptionContainer"] {
-        font-size: 12px !important;
+        font-size: 15px !important;
         line-height: 1.2 !important;
         margin-bottom: 2px !important;
     }
