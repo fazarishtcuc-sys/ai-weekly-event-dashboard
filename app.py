@@ -101,7 +101,7 @@ if st.session_state["dashboard_fullscreen"]:
     .section-title {
         font-size: 15px !important;
         margin-top: 7px !important;
-        margin-bottom: 1px !important;
+        margin-bottom: 2px !important;
     }
 
     [data-testid="stCaptionContainer"] {
