@@ -274,11 +274,7 @@ overview = overview.rename(columns={
 st.dataframe(
     overview,
     use_container_width=True,
-    height=260,
-    hide_index=True,
-    column_config={
-        # Pertahankan konfigurasi kolom yang sudah ada
-    }
+    hide_index=True
 ),
         "ID Event": st.column_config.TextColumn(
             "ID Event",
