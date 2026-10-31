@@ -362,6 +362,9 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 # Filters
+provider_vals = sorted({str(x).strip() for x in period["Provider"].dropna() if str(x).strip()})
+school_vals = sorted({str(x).strip() for x in period["School"].dropna() if str(x).strip()})
+status_vals = sorted({str(x).strip() for x in period["Event Status"].dropna() if str(x).strip()})
 c1,c2,c3 = st.columns([1,1,1.2], gap="small")
 with c1:
     provider_filter = st.multiselect("TCU Area / Provider",provider_vals,default=[])
