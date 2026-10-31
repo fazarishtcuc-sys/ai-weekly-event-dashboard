@@ -272,6 +272,25 @@ hr {{
 </style>
 """, unsafe_allow_html=True)
 
+# Filters
+c1,c2,c3 = st.columns([1,1,1.2], gap="small")
+provider_vals = sorted({str(x).strip() for x in period["Provider"].dropna() if str(x).strip()})
+school_vals = sorted({str(x).strip() for x in period["School"].dropna() if str(x).strip()})
+status_vals = sorted({str(x).strip() for x in period["Event Status"].dropna() if str(x).strip()})
+with c1:
+    provider_filter = st.multiselect("TCU Area / Provider",provider_vals,default=[])
+with c2:
+    school_filter = st.multiselect("School",school_vals,default=[])
+with c3:
+    status_filter = st.multiselect("Status Event",status_vals,default=[])
+
+shown = period.copy()
+if provider_filter: shown=shown[shown["Provider"].astype(str).isin(provider_filter)]
+if school_filter: shown=shown[shown["School"].astype(str).isin(school_filter)]
+if status_filter: shown=shown[shown["Event Status"].astype(str).isin(status_filter)]
+if shown.empty:
+    st.warning("Tidak ada data yang sesuai dengan filter.")
+    st.stop()
 
 with st.sidebar:
     st.markdown("## 📂 Upload Data")
