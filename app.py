@@ -376,7 +376,6 @@ shown = period.copy()
 if provider_filter: shown=shown[shown["Provider"].astype(str).isin(provider_filter)]
 if school_filter: shown=shown[shown["School"].astype(str).isin(school_filter)]
 if status_filter: shown=shown[shown["Event Status"].astype(str).isin(status_filter)]
-if shown.empty:
 st.warning("Tidak ada data yang sesuai dengan filter.")
     st.stop()
 # Prepare match state
