@@ -68,7 +68,7 @@ if st.session_state["dashboard_fullscreen"]:
     }
 
     [data-testid="stMultiSelect"] [data-baseweb="select"] > div {
-        min-height: 20px !important;
+        min-height: 15px !important;
     }
 
     /* Tombol fullscreen */
