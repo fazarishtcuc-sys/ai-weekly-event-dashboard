@@ -7,18 +7,6 @@ from modules.engine import (
     save_choice, list_cities, list_rooms, add_room, add_city
 )
 from modules.exporter import export_workbook
-# Tambahkan CSS untuk menebalkan teks di dalam tabel Streamlit
-st.markdown(
-    """
-    <style>
-    /* Menebalkan seluruh teks di dalam sel tabel dataframe */
-    .stDataFrame td, .stDataFrame th {
-        font-weight: bold !important;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 st.set_page_config(
     page_title="Weekly Event Dashboard",
     page_icon="📅",
