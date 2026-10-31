@@ -307,14 +307,6 @@ st.dataframe(
         )
     }
 )
-st.dataframe(overview,use_container_width=True,hide_index=True,
-             column_config={
-                 "Nama Event":st.column_config.TextColumn("Nama Event",width="large"),
-                 "Mulai":st.column_config.DateColumn("Mulai",format="DD MMM YYYY"),
-                 "Selesai":st.column_config.DateColumn("Selesai",format="DD MMM YYYY"),
-                 "Kota":st.column_config.TextColumn("Kota",width="medium"),
-                 "Ruangan":st.column_config.TextColumn("Ruangan",width="medium")
-             })
 
 st.markdown('<div class="section">📍 Pengaturan Kota & Ruangan</div>',unsafe_allow_html=True)
 st.caption("Kota dan Ruangan diisi langsung di samping nama event. Pilih Kota terlebih dahulu; daftar Ruangan akan mengikuti Kota tersebut.")
