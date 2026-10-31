@@ -33,7 +33,7 @@ if st.session_state["dashboard_fullscreen"]:
     /* ===== COMPACT FULLSCREEN MODE ===== */
 
     .block-container {
-        padding-top: 0.35rem !important;
+        padding-top: 0.7rem !important;
         padding-bottom: 0.7rem !important;
         padding-left: 1rem !important;
         padding-right: 1rem !important;
