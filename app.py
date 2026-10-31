@@ -201,7 +201,7 @@ html, body, [class*="css"] {{
 }}
 [data-testid="stWidgetLabel"] label {{
     color: #475569;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
 }}
 [data-baseweb="select"] > div {{
