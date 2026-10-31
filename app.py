@@ -120,21 +120,7 @@ if st.session_state["dashboard_fullscreen"]:
     </style>
     """, unsafe_allow_html=True)
 
-        [data-testid="stSidebar"] {
-            display: none;
-        }
-        [data-testid="stHeader"] {
-            display: none;
-        }
-        .block-container {
-            max-width: 100% !important;
-            padding-top: 0.5rem !important;
-            padding-left: 2rem !important;
-            padding-right: 2rem !important;
-        }
-    </style>
-    """, unsafe_allow_html=True)
-st.markdown("""
+st.markdown('<div class="section">📋 Event Schedule</div>',unsafe_allow_html=True)
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
 html, body, [class*="css"] {font-family:'DM Sans',sans-serif}
