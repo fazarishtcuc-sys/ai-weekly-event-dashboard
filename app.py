@@ -224,20 +224,22 @@ for idx,row in shown.iterrows():
 # Lokasi dan Ruangan boleh kosong
 # ---------------------------------------------------------
 
-if st.button("💾 Simpan Semua Perubahan", type="primary", use_container_width=True):
-
+if st.button(
+    "💾 Simpan Semua Perubahan",
+    type="primary",
+    use_container_width=True
+):
     saved_count = 0
     error_count = 0
 
-    for event_key, values in st.session_state.get("pending_choices", {}).items():
+    pending = st.session_state.get("pending_choices", {})
 
-        # Ambil data event yang terkait dengan pilihan ini
+    for event_key, values in pending.items():
         row = values.get("row")
 
         if row is None:
             continue
 
-        # Lokasi dan Ruangan boleh kosong
         city = str(values.get("city", "") or "").strip()
         room = str(values.get("room", "") or "").strip()
 
@@ -249,18 +251,14 @@ if st.button("💾 Simpan Semua Perubahan", type="primary", use_container_width=
             room = ""
 
         try:
-            save_choice(
-                DB_PATH,
-                row,
-                city,
-                room
-            )
+            save_choice(DB, row, city, room)
             saved_count += 1
 
         except Exception as e:
             error_count += 1
             st.error(
-                f"Gagal menyimpan event {row.get('Event Name', '')}: {e}"
+                f"Gagal menyimpan event "
+                f"{values.get('event_name', '')}: {e}"
             )
 
     if error_count == 0:
@@ -268,21 +266,19 @@ if st.button("💾 Simpan Semua Perubahan", type="primary", use_container_width=
             f"Berhasil menyimpan {saved_count} event. "
             "Lokasi dan Ruangan boleh tetap kosong."
         )
+        st.session_state["pending_choices"] = {}
+        st.rerun()
+
     else:
         st.warning(
             f"Tersimpan: {saved_count} event. "
             f"Gagal: {error_count} event."
         )
-    else:
-        saved_count = 0
-        for item in pending.values():
-            save_choice(DB, item["row"], item["city"], item["room"])
-            saved_count += 1
-        st.session_state["pending_choices"] = {}
-        st.success(f"Berhasil menyimpan {saved_count} pilihan Kota dan Ruangan ke database.")
-        st.rerun()
 
-# Re-fetch selections for export
+
+# ---------------------------------------------------------
+# RE-FETCH SELECTIONS FOR EXPORT
+# ---------------------------------------------------------
 export=shown.copy()
 cities_out=[]; rooms_out=[]
 for _,row in export.iterrows():
