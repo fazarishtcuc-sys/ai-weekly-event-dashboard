@@ -11,6 +11,32 @@ from modules.exporter import export_workbook
 st.set_page_config(page_title="Weekly Event Dashboard", page_icon="📅", layout="wide")
 DB = Path("data/event_choices.db")
 DB.parent.mkdir(exist_ok=True)
+
+# ---------------------------------------------------------
+# MODE FULL SCREEN DASHBOARD
+# ---------------------------------------------------------
+
+if "dashboard_fullscreen" not in st.session_state:
+    st.session_state["dashboard_fullscreen"] = False
+
+if st.session_state["dashboard_fullscreen"]:
+    st.markdown("""
+    <style>
+        [data-testid="stSidebar"] {
+            display: none;
+        }
+        [data-testid="stHeader"] {
+            display: none;
+        }
+        .block-container {
+            max-width: 100% !important;
+            padding-top: 0.5rem !important;
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
 init_db(DB)
 
 st.markdown("""
@@ -129,6 +155,16 @@ if shown.empty:
 matches={}
 for idx,row in shown.iterrows():
     matches[idx]=find_saved_choice(DB,row)
+
+# Tombol mode layar penuh
+if st.session_state["dashboard_fullscreen"]:
+    if st.button("✕ Keluar Full Screen Dashboard"):
+        st.session_state["dashboard_fullscreen"] = False
+        st.rerun()
+else:
+    if st.button("⛶ Mode Full Screen Dashboard"):
+        st.session_state["dashboard_fullscreen"] = True
+        st.rerun()
 
 
 # ---------------------------------------------------------
