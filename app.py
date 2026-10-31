@@ -23,9 +23,103 @@ init_db(DB)
 if "dashboard_fullscreen" not in st.session_state:
     st.session_state["dashboard_fullscreen"] = False
 
+
 if st.session_state["dashboard_fullscreen"]:
     st.markdown("""
     <style>
+
+    /* ===== COMPACT HEADER ===== */
+
+    .block-container {
+        padding-top: 0.1rem !important;
+        padding-bottom: 0.2rem !important;
+        padding-left: 0.8rem !important;
+        padding-right: 0.8rem !important;
+        max-width: 100% !important;
+    }
+
+    /* Header utama */
+    .hero {
+        padding: 5px 15px !important;
+        margin-bottom: 4px !important;
+        border-radius: 8px !important;
+    }
+
+    .hero h1 {
+        font-size: 15px !important;
+        margin: 0 !important;
+    }
+
+    .hero p {
+        font-size: 9px !important;
+        margin: 0 !important;
+    }
+
+    /* Notifikasi upload disembunyikan */
+    [data-testid="stAlert"] {
+        display: none !important;
+    }
+
+    /* Filter diperkecil */
+    [data-testid="stMultiSelect"] {
+        min-height: 30px !important;
+    }
+
+    [data-testid="stMultiSelect"] > div {
+        min-height: 30px !important;
+    }
+
+    [data-testid="stWidgetLabel"] {
+        font-size: 10px !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* Tombol Full Screen */
+    .stButton > button {
+        min-height: 25px !important;
+        height: 25px !important;
+        padding: 0px 8px !important;
+        font-size: 10px !important;
+    }
+
+    /* Kartu KPI */
+    .kpi {
+        min-height: 43px !important;
+        padding: 4px 9px !important;
+        border-radius: 7px !important;
+        box-shadow: none !important;
+    }
+
+    .kpi-label {
+        font-size: 8px !important;
+        letter-spacing: 0 !important;
+    }
+
+    .kpi-value {
+        font-size: 17px !important;
+        margin-top: 0 !important;
+    }
+
+    /* Jarak antar komponen */
+    div[data-testid="stVerticalBlock"] {
+        gap: 0.2rem !important;
+    }
+
+    /* Judul Event Schedule */
+    .section {
+        font-size: 13px !important;
+        margin: 3px 0 2px !important;
+    }
+
+    /* Keterangan periode */
+    [data-testid="stCaptionContainer"] {
+        font-size: 9px !important;
+        line-height: 1.1 !important;
+    }
+
+    </style>
+    """, unsafe_allow_html=True)
+
         [data-testid="stSidebar"] {
             display: none;
         }
