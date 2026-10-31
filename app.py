@@ -26,23 +26,99 @@ if "dashboard_fullscreen" not in st.session_state:
 # ---------------------------------------------------------
 # DESIGN SYSTEM — MODERN CORPORATE DASHBOARD
 # ---------------------------------------------------------
+
 fullscreen_css = ""
+
 if st.session_state["dashboard_fullscreen"]:
     fullscreen_css = """
+    /* ===== COMPACT FULLSCREEN MODE ===== */
+
     .block-container {
-        padding: 1.0rem 1.35rem 2rem !important;
+        padding-top: 0.35rem !important;
+        padding-bottom: 0.7rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
         max-width: 100% !important;
     }
+
+    /* Header dashboard */
     .dashboard-header {
-        padding: 15px 20px !important;
-        margin-bottom: 14px !important;
+        padding: 9px 16px !important;
+        margin-bottom: 5px !important;
+        border-radius: 11px !important;
     }
-    .dashboard-header h1 { font-size: 23px !important; }
-    .dashboard-header p { font-size: 12px !important; }
-    .kpi { min-height: 82px !important; padding: 13px 16px !important; }
-    .kpi-label { font-size: 10px !important; }
-    .kpi-value { font-size: 25px !important; }
-    .section-title { margin-top: 18px !important; }
+
+    .dashboard-header h1 {
+        font-size: 20px !important;
+        line-height: 1.2 !important;
+    }
+
+    .dashboard-header p {
+        font-size: 10px !important;
+        margin-top: 2px !important;
+    }
+
+    /* Filter */
+    [data-testid="stWidgetLabel"] {
+        margin-bottom: 1px !important;
+    }
+
+    [data-testid="stWidgetLabel"] label {
+        font-size: 10px !important;
+    }
+
+    [data-testid="stMultiSelect"] [data-baseweb="select"] > div {
+        min-height: 34px !important;
+    }
+
+    /* Tombol fullscreen */
+    .stButton > button {
+        min-height: 32px !important;
+        height: 32px !important;
+        font-size: 11px !important;
+        padding: 0.2rem 0.7rem !important;
+    }
+
+    /* KPI cards */
+    .kpi {
+        min-height: 65px !important;
+        padding: 8px 12px !important;
+        border-radius: 10px !important;
+    }
+
+    .kpi-label {
+        font-size: 9px !important;
+        line-height: 1.2 !important;
+    }
+
+    .kpi-value {
+        font-size: 22px !important;
+        margin-top: 2px !important;
+        line-height: 1.1 !important;
+    }
+
+    /* Event Schedule */
+    .section-title {
+        font-size: 15px !important;
+        margin-top: 7px !important;
+        margin-bottom: 1px !important;
+    }
+
+    [data-testid="stCaptionContainer"] {
+        font-size: 9px !important;
+        line-height: 1.2 !important;
+        margin-bottom: 2px !important;
+    }
+
+    /* Kurangi jarak vertikal */
+    [data-testid="stVerticalBlock"] {
+        gap: 0.4rem !important;
+    }
+
+    /* Tabel */
+    [data-testid="stDataFrame"] {
+        margin-top: 0 !important;
+    }
     """
 
 st.markdown(f"""
