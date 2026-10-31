@@ -362,12 +362,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 shown = period.copy()
-    st.warning("Tidak ada data yang sesuai dengan filter.")
-    st.stop()
-# Prepare match state
-matches={}
-for idx,row in shown.iterrows():
-    matches[idx]=find_saved_choice(DB,row)
+    
 # Tombol mode layar penuh
 if st.session_state["dashboard_fullscreen"]:
     if st.button("✕ Keluar Full Screen Dashboard"):
