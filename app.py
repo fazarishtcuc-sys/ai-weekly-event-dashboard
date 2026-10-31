@@ -120,7 +120,7 @@ if st.session_state["dashboard_fullscreen"]:
     </style>
     """, unsafe_allow_html=True)
 
-st.markdown('<div class="section">📋 Event Schedule</div>',unsafe_allow_html=True)
+st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
 html, body, [class*="css"] {font-family:'DM Sans',sans-serif}
