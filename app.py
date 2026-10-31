@@ -137,7 +137,7 @@ st.markdown('<div class="section">📋 Event Schedule</div>',unsafe_allow_html=T
 st.caption(f"Menampilkan {len(shown)} event · {start:%d %b %Y} sampai {end:%d %b %Y} · Sumber: {st.session_state['filename']}")
 
 # Compact overview table
-overview_cols=["Event Name","Event Date Start","Event Date End","Event Status","Provider","Vendor","Training Support","School"]
+overview_cols=["Event Name","Event Date Start","Event Date End","Event Status","Provider","Training Support","School"]
 overview=shown[[c for c in overview_cols if c in shown.columns]].copy()
 overview["Kota"]=[matches[i].get("city","") for i in shown.index]
 overview["Ruangan"]=[matches[i].get("room","") for i in shown.index]
