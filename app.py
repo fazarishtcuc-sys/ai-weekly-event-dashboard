@@ -136,12 +136,79 @@ for col,label,value in [(k1,"TOTAL EVENT",total),(k2,"ONGOING",int(ongoing)),(k3
 st.markdown('<div class="section">📋 Event Schedule</div>',unsafe_allow_html=True)
 st.caption(f"Menampilkan {len(shown)} event · {start:%d %b %Y} sampai {end:%d %b %Y} · Sumber: {st.session_state['filename']}")
 
+
 # Compact overview table
-overview_cols=["Event Name","Event Date Start","Event Date End","Event Status","Provider","Training Support","School"]
-overview=shown[[c for c in overview_cols if c in shown.columns]].copy()
-overview["Kota"]=[matches[i].get("city","") for i in shown.index]
-overview["Ruangan"]=[matches[i].get("room","") for i in shown.index]
-overview=overview.rename(columns={"Event Name":"Nama Event","Event Date Start":"Mulai","Event Date End":"Selesai","Event Status":"Status","Provider":"TCU Area","Training Support":"Training Support"})
+overview_cols = [
+    "Event ID",
+    "Event Name",
+    "Event Date Start",
+    "Event Date End",
+    "Event Status",
+    "Provider",
+    "Training Support",
+    "School"
+]
+
+overview = shown[
+    [c for c in overview_cols if c in shown.columns]
+].copy()
+
+# Nomor urut otomatis
+overview.insert(0, "No.", range(1, len(overview) + 1))
+
+overview["Kota"] = [
+    matches[i].get("city", "") for i in shown.index
+]
+
+overview["Ruangan"] = [
+    matches[i].get("room", "") for i in shown.index
+]
+
+overview = overview.rename(columns={
+    "Event ID": "ID Event",
+    "Event Name": "Nama Event",
+    "Event Date Start": "Mulai",
+    "Event Date End": "Selesai",
+    "Event Status": "Status",
+    "Provider": "TCU Area"
+})
+
+st.dataframe(
+    overview,
+    use_container_width=True,
+    hide_index=True,
+    column_config={
+        "No.": st.column_config.NumberColumn(
+            "No.",
+            width="small",
+            format="%d"
+        ),
+        "ID Event": st.column_config.TextColumn(
+            "ID Event",
+            width="small"
+        ),
+        "Nama Event": st.column_config.TextColumn(
+            "Nama Event",
+            width="large"
+        ),
+        "Mulai": st.column_config.DateColumn(
+            "Mulai",
+            format="DD MMM YYYY"
+        ),
+        "Selesai": st.column_config.DateColumn(
+            "Selesai",
+            format="DD MMM YYYY"
+        ),
+        "Kota": st.column_config.TextColumn(
+            "Kota",
+            width="medium"
+        ),
+        "Ruangan": st.column_config.TextColumn(
+            "Ruangan",
+            width="medium"
+        )
+    }
+)
 st.dataframe(overview,use_container_width=True,hide_index=True,
              column_config={
                  "Nama Event":st.column_config.TextColumn("Nama Event",width="large"),
